@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时钟</title>
+    <style>
+        @font-face {
+
+            font-family: clockicons;
+
+            src: url(lib/fonts/clockicons/clockicons.eot) format('embedded-opentype'),
+                url(lib/fonts/clockicons/clockicons.woff2) format('woff2'),
+                url(lib/fonts/clockicons/clockicons.woff) format('woff'),
+                url(lib/fonts/clockicons/clockicons.ttf) format('truetype'),
+                url(lib/fonts/clockicons/clockicons.svg) format('svg');
+
+            font-weight: 400;
+
+            font-style: normal
+        }
+
+        .clock {
+            -webkit-text-size-adjust: 100%;
+
+            -webkit-tap-highlight-color: transparent;
+
+            line-height: 1.6;
+
+            font-weight: 300;
+
+            box-sizing: border-box;
+
+            white-space: nowrap;
+
+            font-family: clockicons, sans-serif;
+
+            color: #555 !important;
+
+            font-size: 53px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <p class="clock"></p>
+
+        <div id="hid">啊这，你不会禁js了吧</div>
+        <div id="hid2" style="display: none;">
+            <p>如果一直显示这段话</p>
+            <p>说明你的浏览器</p>
+            <p>不支持innerHTML</p>
+        </div>
+        <div id="hid3" style="display: none;">
+            <p>如果一直显示这段话</p>
+            <p>说明你的浏览器</p>
+            <p>不支持innerText</p>
+        </div>
+    </div>
+    <script>
+
+
+        document.getElementById("hid").style.display = "none";
+        document.getElementById("hid2").style.display = "block";
+        document.getElementById("hid3").style.display = "block";
+        document.getElementById("hid2").innerHTML = "";
+        document.getElementById("hid3").innerText = "";
+        function showDate(date) {
+            return date.toLocaleTimeString("zh-Hans-CN",{hour12:false});
+        }
+		let clock = document.querySelector("#app .clock");
+        setInterval(() => {
+            clock.innerHTML = showDate(new Date());
+        }, 250);//单位毫秒，数值越小更新频率越高，但可能产生不必要系统开销
+    </script>
+</body>
+</html>
