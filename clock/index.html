@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时钟</title>
+    <link rel="stylesheet" href="./clock.css">
+</head>
+
+<body>
+    <div  id="app">
+        <p class="clock"></p>
+        <!-- 支持性检测部分 -->
+        <div id="hid" class="warn">
+            <p>啊这，你不会禁js了吧?</p>
+        </div>
+        <!-- //支持性检测部分 -->
+    </div>
+    <script>
+
+        // 支持性检测部分
+        document.getElementById("hid").classList.add("have-hidden");
+        // 支持性检测部分-end
+        const paramMap = (_ => {
+            const paraIndex = _.indexOf('?')
+            if (paraIndex == -1) return {};
+            return ((s) => {
+                const list = s.split("&").map(decodeURIComponent);
+                return list.reduce((p, line) => {
+                    const eqInd = line.indexOf('=');
+                    if (eqInd !== -1) {
+                        p[line.substring(0, eqInd)] = line.substring(eqInd + 1);
+                    } else {
+                        p[line] = line;
+                    }
+                    return p;
+                }, {});
+            })(_.substring(paraIndex + 1));
+        })(window.location.search);
+        // 默认24小时制
+        const hour12 = paramMap.hour12 != null;
+        // 时区 默认上海（北京时间）
+        const zone = paramMap.zone || "Asia/Shanghai";
+        // 默认简中表示
+        const loc = paramMap.loc || "zh-Hans-CN";
+        // 更新频率 默认100毫秒（0.1秒刷新一次）
+        const rate = paramMap.rate || 100;
+        // 前景、背景颜色
+        const color = paramMap.color || "#EEE";
+        const bgcolor = paramMap.bg || "#000";
+
+
+        // 设置颜色
+        document.body.style.setProperty("--dig-color", color);
+        document.body.style.setProperty("--bg-color", bgcolor);
+        const tostringOption = { hour12: hour12, timeZone: zone };
+        // 设置显示
+        function showDate(date) {
+            return date.toLocaleTimeString(loc, tostringOption);
+        }
+        // 启动
+        let clock = document.querySelector("#app .clock");
+        const valSet = clock.innerText === undefined ? x => clock.textContent != x ? clock.textContent = x : x : x => clock.innerText != x ? clock.innerText = x : x;
+        clock.textContent = "1234";
+        setInterval(() => {
+            valSet(showDate(new Date()));
+        }, rate);
+    </script>
+</body>
+
+</html>

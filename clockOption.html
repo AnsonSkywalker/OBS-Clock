@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="简单黑白风格时钟，可配置">
+    <title>简约时钟</title>
+    <style>
+        .pan {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        fieldset {
+            padding: 0.5rem 3rem;
+            border: none;
+        }
+
+        input[type=color] {
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+
+        }
+
+        input[name=loc],
+        input[name=loc]~label {
+            display: none;
+        }
+
+        input:checked[name=hour12]~input[name=loc],
+        input:checked[name=hour12]~label {
+            display: inline-block;
+        }
+
+        input[name=zone] {
+            display: block;
+            line-height: 2rem;
+            width: 32rem;
+            max-width: 100%;
+        }
+
+        input[name=zone]~datalist {
+            margin: 1rem 1rem;
+           
+            width: 30rem;
+            max-height: 20rem;
+            overflow-x: hidden;
+            overflow-y: auto;
+            border: 2px #212529 solid;
+            border-radius: .5rem;
+        }
+
+        input[name=zone]:focus~datalist,
+        input[name=zone]~datalist:hover {
+            display: block;
+        }
+
+        input[name=zone]~datalist option {
+            padding: 0.5rem 0 0.5rem 0.5rem;
+        }
+
+        input[name=zone]~datalist option:hover {
+            border-width: 2px;
+            border-style: solid;
+            border-color: #86b7fe;
+            border-bottom-width: unset;
+            border-top-width: unset;
+        }
+
+        /* #zone~datalist option:hover+option {
+            border-top: none;
+        } */
+
+        input[name=zone]~datalist option:last-child {
+            border-bottom-width: unset;
+        }
+
+        /* #zone~datalist option::after {
+            content:"\20" "\20" "\20" "\20" attr(value);
+        } */
+        input[name=rate] {
+            width: 6rem;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="pan shadow">
+        <form action="./clock/index.html" method="get">
+            <fieldset>
+                <label for="color">文字颜色</label>
+                <input type="color" class="form-control form-control-color" name="color" id="color" value="#EEEEEE">
+
+                <label for="bgcolor">背景颜色</label>
+                <input type="color" class="form-control form-control-color" name="bg" id="bgcolor">
+            </fieldset>
+            <fieldset>
+                <input type="checkbox" class="form-check-input" name="hour12" id="hour12">
+                <label for="hour12" class="form-check-label">使用12小时制</label>
+                <div></div>
+                <input type="radio" class="form-check-input" name="loc" value="zh-Hans-CN" checked id="zh">
+                <label for="zh" class="form-check-label">下午</label>
+                <input type="radio" class="form-check-input" name="loc" value="en-US" id="en">
+                <label for="en" class="form-check-label">PM</label>
+                <input type="radio" class="form-check-input" name="loc" value="ja-JP" id="ja">
+                <label for="ja" class="form-check-label">午後</label>
+            </fieldset>
+            <fieldset>
+                <label for="zone" class="form-label">时区</label>
+                <input class="form-control" name="zone" value="Asia/Shanghai" id="zone">
+                <datalist id="zonelist">
+                </datalist>
+            </fieldset>
+            <fieldset>
+                <div class="input-group" style="padding-right: 50%;">
+
+                    <label for="rate" class="input-group-text">每</label>
+                    <input class="form-control" type="number" name="rate" step="1" value="100" id="rate">
+                    <label for="rate" class="input-group-text">毫秒更新一次</label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <input type="submit" class="btn btn-primary px-5" value="确认">
+            </fieldset>
+
+        </form>
+    </div>
+    <script type="text/javascript" src="./clock/clockOption.js"></script>
+</body>
+
+</html>
