@@ -1,0 +1,56 @@
+/* 时钟字体，网上翻到的 */
+@font-face {
+    font-family: clockicons;
+    src: url(./clockicons/clockicons.eot) format('embedded-opentype'),
+        url(./clockicons/clockicons.woff2) format('woff2'),
+        url(./clockicons/clockicons.woff) format('woff'),
+        url(./clockicons/clockicons.ttf) format('truetype'),
+        url(./clockicons/clockicons.svg) format('svg');
+    font-weight: 400;
+    font-style: normal
+}
+
+:root {
+    --bg-color: #000;
+    --dig-color: #EEE;
+}
+
+body {
+    /* 背景色 */
+    background-color: var(--bg-color);
+}
+
+#app {
+    /* 前景色 */
+    color: var(--dig-color);
+    font-size: 3.4rem;
+}
+
+#app>* {
+    margin: 0 auto;
+    width: min-content;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+#app .clock {
+    line-height: 1.6;
+    font-weight: 300;
+    font-size: 20vw;
+    font-family: clockicons, sans-serif;
+}
+
+/* 支持性检测 */
+.have-hidden {
+    display: none;
+}
+
+.warn:not(.have-hidden)~.warn {
+    display: none;
+}
+
+body>*:not(#app) {
+    display: none;
+}

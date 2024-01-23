@@ -3,38 +3,12 @@
 
 使用教程：
 
-1. 在场景内添加一个“浏览器”源
-2. 勾选“本地文件”复选框，设置本地文件目标为该项目根目录下的`clock.html`文件
-3. 根据你的需要自己调整浏览器源的宽度和高度
-
-   用于控制浏览器窗口大小或宽高比，在确保能完整显示文字的前提下可以随意调整，无需与画布分辨率保持一致。例如设置为720p分辨率，即宽1280高720。
-
-   可能需要配合“裁剪/填充”滤镜使用
-
-5. 将以下文本粘贴进自定义CSS样式内：
-
-        body {
-            background-color: #000;
-        }
-        #app{
-            margin: 0px auto;
-        }
-
-
-        #app .clock {
-            text-align: center;
-            vertical-align: middle;
-            display: inline-block;
-            -webkit-text-size-adjust: 100%;
-            -webkit-tap-highlight-color: transparent;
-            line-height: 1.6;
-            font-weight: 300;
-            box-sizing: border-box;
-            white-space: nowrap;
-            font-family: clockicons, sans-serif;
-            color: #EEE !important;
-            font-size: 53px;
-        }
-    对于高级用户，可以根据你自己的需要自行修改CSS样式以自定义。
-6. 根据你的需要自行调整“不可见时关闭源”和“场景变为活动状态时，刷新浏览器”设置项
-7. 在场景中右键此浏览器源，调整“混合模式”为“添加”（透明背景，白色文字）或“减少”（透明背景，黑色文字）
+1. 下载本仓库的master分支并解压，或访问[在线版本](https://dave-12138.cn/test/clockOption.html)
+2. 打开<code>clockOption.html</code>，你会看到一个设置界面
+<img src="./readme/options.png" style="width:400px">
+3. 根据你的需要调整设置并点击确认，浏览器会跳转到时钟页面
+<img src="./readme/copy.jpg" style="width:400px">
+4. 你需要复制该页面的地址
+5. 打开OBS，在场景内添加一个“浏览器”源，将刚复制的链接粘贴到<code>URL</code>栏
+<img src="./readme/llqy.png" style="width:400px">
+6. 点击确定即可使用
